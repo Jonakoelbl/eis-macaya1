@@ -1,0 +1,39 @@
+<div class="preamble" id="zen-preamble" role="article">
+		<table border="1" style="width:500px">
+		<h3>Creacion de Partido</h3>
+			<% form_for(@partido, '/partidos/create') do |p| %> 
+                                <%= p.label :torneo %>
+				<%= p.text_field :torneo %> <br>
+                                <%= p.label :fecha %>	
+				<%= p.text_field :fecha %> <br>
+				<%= p.label :equipo_local %>
+				<%= p.text_field :equipo_local %> <br>
+				<%= p.label :equipo_visitante %>
+				<%= p.text_field :equipo_visitante %> <br>
+							
+				<%= p.submit "Agregar", :class => 'button' %>
+			<% end %>
+		</table>
+</div>
+
+<aside class="columnaIzquierda" role="complementary">
+	<div class="wrapper">
+		<div class="design-selection" id="design-selection">
+			<h3 class="select">ACCIONES</h3>
+			<nav role="navigation">
+				<ul>
+
+					<li>
+						
+					</li>	
+					<li>
+						
+					</li>		
+						
+				</ul>
+			</nav>
+				
+		</div>
+
+	</div>
+</aside>

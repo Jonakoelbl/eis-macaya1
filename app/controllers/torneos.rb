@@ -9,6 +9,12 @@ Macaya::App.controllers :torneos do
 	    @torneo = Torneo.new
 	    render 'torneos/new'
 	end
+=begin
+	get :edit, :with => :id do
+	    @torneo = Torneo.get(:id)
+            render 'torneos/edit'
+	end
+=end
 
 	post :create do
 		@torneo = Torneo.new(params[:torneo])

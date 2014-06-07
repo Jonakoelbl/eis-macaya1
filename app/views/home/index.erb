@@ -35,6 +35,33 @@
 		<p><a href="<%= url(:equipos, :all) %>" class="ver-mas">Ver más</a></p>
 </div>
 
+<div class="preamble" id="zen-preamble" role="article">
+		<h3>Partidos Creados Recientemente</h3>
+		<p>Aquí se encuentran los partidos recientemente creados: </p>
+		<table border="1" style="width:500px">
+			<tr>
+			  <th>Torneo</th>
+			</tr>
+			<% @partidos.each do | partido | %>
+			<tr>
+			<td>
+				<%= partido.torneo %>
+			</td>
+			<td>
+				<%= partido.fecha %>
+			</td>
+  			<td>
+				<%= partido.equipo_local %>
+			</td>
+			<td>
+				<%= partido.equipo_visitante %>
+			</td>
+			</tr>
+ 			<% end %>
+
+		</table>
+</div>
+
 <aside class="columnaIzquierda" role="complementary">
 	<div class="wrapper">
 		<div class="design-selection" id="design-selection">
@@ -42,11 +69,14 @@
 			<nav role="navigation">
 				<ul>
 					<li>
-						<a href="<%= url(:torneos, :new) %>" class="ver-mas"><img src="agregarTorneoButton.jpg"</a>
+						<a href="<%= url(:torneos, :new) %>" class="ver-mas"> <img src="img/agregarTorneoButton.jpg"</a>
 					</li>	
 					<li>
-						<a href="<%= url(:equipos, :new) %>" class="ver-mas"><img src="agregarEquipoButton.jpg"</a>
-					</li>						
+						<a href="<%= url(:equipos, :new) %>" class="ver-mas"> <img src="img/agregarEquipoButton.jpg"</a>
+					</li>		
+					<li>
+						<a id="agregar-partido" href="<%= url(:partidos, :new) %>" class="ver-mas"> Agregar Partido</a>			
+					</li>	
 				</ul>
 			</nav>
 			

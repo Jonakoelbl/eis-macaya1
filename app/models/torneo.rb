@@ -3,7 +3,7 @@ class Torneo
 
   # property <name>, <type>
   # property :id, Serial
-  property :name, String, :key => true, :unique => true
+  property :name, String, :unique => true, :key => true
 
   validates_presence_of :name
 end
