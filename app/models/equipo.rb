@@ -6,4 +6,6 @@ class Equipo
   property :name, String, :unique => true, :key => true
 
   validates_presence_of :name
+
+  has n, :partidos
 end

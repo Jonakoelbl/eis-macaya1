@@ -3,14 +3,15 @@ class Partido
 
   # property <name>, <type>
   property :id, Serial
-  property :torneo, String, :unique_index => :u
-  property :equipo_local, String, :unique_index => :u
-  property :equipo_visitante, String, :unique_index => :u
-  property :fecha, Date, :unique_index => :u
+  # property :torneo, String, :unique_index => :u
+  # property :equipo_local, String, :unique_index => :u
+  # property :equipo_visitante, String, :unique_index => :u
+  property :fecha, Date, :unique => true
 
-  validates_presence_of :torneo
-  validates_presence_of :equipo_local
-  validates_presence_of :equipo_visitante
+  belongs_to :torneo, 'Torneo', :key => true
+  belongs_to :equipo_local, 'Equipo', :key => true
+  belongs_to :equipo_visitante, 'Equipo', :key => true
+
   validates_presence_of :fecha
 
 end
