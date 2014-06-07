@@ -13,7 +13,6 @@ Macaya::App.controllers :partidos do
 		else
 		  flash.now[:error] = 'EL PARTIDO NO PUDO SER AGREGADO'
 		  render 'partidos/new'
-        	end
+        end
 	end
-
 end

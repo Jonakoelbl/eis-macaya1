@@ -12,5 +12,4 @@ class Partido
   validates_presence_of :equipo_local
   validates_presence_of :equipo_visitante
   validates_presence_of :fecha
-
 end
