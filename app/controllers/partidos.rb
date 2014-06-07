@@ -1,6 +1,8 @@
 Macaya::App.controllers :partidos do
 
 	get :new do
+		@torneos = Torneo.all
+		@equipos = Equipo.all
 	    @partido = Partido.new
 	    render 'partidos/new'
 	end
