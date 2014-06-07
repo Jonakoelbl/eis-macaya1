@@ -13,5 +13,4 @@ class Partido
   belongs_to :equipo_visitante, 'Equipo', :key => true
 
   validates_presence_of :fecha
-
 end
