@@ -9,8 +9,7 @@ Macaya::App.controllers :partidos do
 		torneo = Torneo.get(params[:partido][:torneo])
 		equipo_local = Equipo.get(params[:partido][:equipo_local])
 		equipo_visitante = Equipo.get(params[:partido][:equipo_visitante])
-		fecha = params[:partido][:fecha]
-
+		
 		unless torneo.nil? 
 			unless equipo_local.eql? equipo_visitante
 				@partido = Partido.new(params[:partido])
