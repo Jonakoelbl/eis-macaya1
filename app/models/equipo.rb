@@ -7,5 +7,5 @@ class Equipo
 
   validates_presence_of :name
 
-  has n, :partidos
+  # has n, :partidos
 end

@@ -2,19 +2,20 @@
 		<table border="1" style="width:500px">
 		<h3>Creacion de Partido</h3>
 		<% form_for(@partido, '/partidos/create') do |p| %> 
-                <%= p.label :torneo %> <br> 
-				<%= p.select(:torneo, :collection => @torneos, :fields => [:name], :include_blank => 'seleccionar torneo')%> <br>
 
-				<%= p.label :equipo_local %> <br>
-				<%= p.select(:equipo_local, :collection => @equipos, :fields => [:name], :include_blank => 'seleccionar local')%> <br>
+			<%= p.label :torneo %>
+			<%= p.text_field :torneo %> <br>
 
-				<%= p.label :equipo_visitante %> <br>
-				<%= p.select(:equipo_visitante, :collection => @equipos, :fields => [:name], :include_blank => 'seleccionar visitante')%> <br><br>
+            <%= p.label :fecha %>	
+			<%= p.text_field :fecha %> <br>
 
-				<%= p.label :fecha %> 
-				<%= p.text_field :fecha %> <br>
-				
-				<%= p.submit "Agregar", :class => 'button' %>
+			<%= p.label :equipo_local %>
+			<%= p.text_field :equipo_local %> <br>
+
+			<%= p.label :equipo_visitante %>
+			<%= p.text_field :equipo_visitante %> <br>
+               
+			<%= p.submit "Agregar", :class => 'button' %>
 
 			<% end %>
 		</table>
