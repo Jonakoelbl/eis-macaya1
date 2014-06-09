@@ -7,7 +7,7 @@ script: PADRINO_ENV=travis bundle exec padrino rake
 deploy:
   provider: heroku
   api_key:
-    secure: VoKHgJZb1yxJsDuCPu7nsKR3wg+TW/ZayauD/xgKvTMfqY395yWJT0XCR3+2Mh/A59avWTjNJ1GGHK27YkSb1L9MzZbwDmDeV32as1PSgyBcksB/firGPIsdMmF6yPlW/LVfMAD+0rNzcAL12UbfvShD6HWw4LtZxx5TtfPHv6g=
-  app: eis-macaya1
+    secure: gSL5w7Dk9BWHEhn2MnDthDDZaYYpdggEEc9o6+/z+h6ny1v/YAfppT8YN1juT4swXAboRUr8LL+Pj25ELxQg4ok8PA26vAuIVt5A7xIeJElG6JyEChB88/9ouC23O0O+4ya+tl2odZ7sM3viMOtnDhiKhzajgmykGmvADmhzAR0=
+  app: macaya1-production
   on:
     repo: nahuelbe/eis-macaya1
