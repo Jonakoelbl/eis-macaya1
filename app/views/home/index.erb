@@ -3,11 +3,11 @@
 		<p>Aquí se encuentran los torneos recientemente creados: </p>
 		<table border="1" style="width:500px">
 			<tr>
-			  <th>Torneos</th>
+			  <th align="center">Torneos</th>
 			</tr>
 			<% @torneos.each do | torneo | %>
 			<tr>
-  			<td>
+  			<td align="center">
 				<%= torneo.name %>
 			</td>
 			</tr>
@@ -22,11 +22,11 @@
 		<p>Aquí se encuentran los equipos recientemente creados: </p>
 		<table border="1" style="width:500px">
 			<tr>
-			  <th>Equipos</th> 
+			  <th align="center">Equipos</th> 
 			</tr>
 			<% @equipos.each do | equipo | %>
 			<tr>
-			<td>
+			<td align="center">
 				<%= equipo.name %>
 			</td>
 			</tr>
@@ -40,20 +40,23 @@
 		<p>Aquí se encuentran los partidos recientemente creados: </p>
 		<table border="1" style="width:500px">
 			<tr>
-			  <th>Torneo</th>
+			  <th align="center">Torneo</th>
+			  <th align="center">Fecha</th> 
+			  <th align="center">Local</th>
+			  <th align="center">Visitante</th>
 			</tr>
 			<% @partidos.each do | partido | %>
 			<tr>
-			<td>
+			<td  align="center">
 				<%= partido.torneo %>
 			</td>
-			<td>
+			<td align="center">
 				<%= partido.fecha %>
 			</td>
-  			<td>
+  			<td align="center">
 				<%= partido.equipo_local %>
 			</td>
-			<td>
+			<td align="center">
 				<%= partido.equipo_visitante %>
 			</td>
 			</tr>
