@@ -3,16 +3,16 @@
 		<h3>Creacion de Partido</h3>
 		<% form_for(@partido, '/partidos/create') do |p| %> 
 
-			<%= p.label :torneo %>
+			<%= p.label :torneo %> <br>
 			<%= p.text_field :torneo %> <br>
 
-            <%= p.label :fecha %>	
+            <%= p.label :fecha %> <br>
 			<%= p.text_field :fecha %> <br>
 
-			<%= p.label :equipo_local %>
+			<%= p.label :equipo_local %> <br>
 			<%= p.text_field :equipo_local %> <br>
 
-			<%= p.label :equipo_visitante %>
+			<%= p.label :equipo_visitante %> <br>
 			<%= p.text_field :equipo_visitante %> <br>
                
 			<%= p.submit "Agregar", :class => 'button' %>
