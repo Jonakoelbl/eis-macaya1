@@ -8,7 +8,6 @@ Macaya::App.controllers :partidos do
 	end
 
 	post :create do
-		
 		unless Torneo.get(params[:partido][:torneo]).nil? 
 			unless Equipo.get(params[:partido][:equipo_local]).nil? or Equipo.get(params[:partido][:equipo_visitante]).nil?
 				unless Equipo.get(params[:partido][:equipo_local]).eql? Equipo.get(params[:partido][:equipo_visitante])
