@@ -15,8 +15,9 @@
 			<%= p.label :equipo_visitante %> <br>
 			<%= p.select(:equipo_visitante, :collection => @equipos, :fields => [:name], :include_blank => 'Seleccionar un equipo visitante') %> <br>
                
-			<%= p.submit "Crear", :class => 'button' %>
-			
+			<%= p.submit "Crear", :class => 'btn btn-primary' %>
+			<%= link_to "Volver", url(:home, :index), :class => 'btn btn-secondary' %>
+
 		<% end %>
 		</table>
 </div>
