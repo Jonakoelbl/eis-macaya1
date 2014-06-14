@@ -1,0 +1,43 @@
+<div class="preamble" id="zen-preamble" role="article">		
+		<h3> Partidos para <%= torneo_actual.name %> </h3>
+		<table border="1" style="width:500px">
+			<tr>
+			  <th align="center">Fecha</th> 
+			  <th align="center">Local</th>
+			  <th align="center">Visitante</th>
+			</tr>
+			<% @partidos.each do | partido | %>
+			<tr>
+
+			<td align="center">
+				<%= partido.fecha %>
+			</td>
+  			<td align="center">
+				<%= partido.nombre_equipo_local %>
+			</td>
+			<td align="center">
+				<%= partido.nombre_equipo_visitante %>
+			</td>
+			</tr>
+ 			<% end %>
+
+		</table>
+</div>
+
+<aside class="columnaIzquierda" role="complementary">
+	<div class="wrapper">
+		<div class="design-selection" id="design-selection">
+			<h3 class="select">ACCIONES</h3>
+			<nav role="navigation">
+				<ul>
+
+					<li>
+						<%= link_to "Agregar Partido", url_for(:partidos, :new), :class => 'link'%>
+					</li>							
+				</ul>
+			</nav>
+				
+		</div>
+
+	</div>
+</aside>

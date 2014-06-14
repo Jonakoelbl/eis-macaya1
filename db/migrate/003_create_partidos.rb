@@ -2,10 +2,10 @@ migration 3, :create_partidos do
   up do
     create_table :partidos do
       column :id, Integer, :serial => true
-      column :torneo, DataMapper::Property::String, :length => 255, :unique_index => :u
-      column :equipo_local, DataMapper::Property::String, :length => 255, :unique_index => :u
-      column :equipo_visitante, DataMapper::Property::String, :length => 255, :unique_index => :u
-      column :fecha, DataMapper::Property::Date, :unique_index => :u
+      column :torneo_id, DataMapper::Property::Integer # :length => 255
+      column :id_equipo_local, DataMapper::Property::Integer # :length => 255
+      column :id_equipo_visitante, DataMapper::Property::Integer # :length => 255
+      column :fecha, DataMapper::Property::Date
     end
   end
 

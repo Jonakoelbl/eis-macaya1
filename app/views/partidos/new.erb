@@ -3,10 +3,7 @@
 		<h3>Creacion de Partido</h3>
 		<% form_for(@partido, '/partidos/create') do |p| %> 
 
-			<%= p.label :torneo %> <br>
-			<%= p.select(:torneo, :collection => @torneos, :fields => [:name], :include_blank => 'Seleccionar torneo') %> <br>
-
-            <%= p.label :fecha, :caption => 'Fecha del partido: ', :required => true %> <br>
+            		<%= p.label :fecha, :caption => 'Fecha del partido: ', :required => true %> <br>
 			<%= p.text_field :fecha, :placeholder => 'yyyy-mm-dd' %> <br>
 
 			<%= p.label :equipo_local %> <br>

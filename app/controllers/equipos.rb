@@ -6,7 +6,7 @@ Macaya::App.controllers :equipos do
 	end
 
 	get :new do
-		@equipo = Equipo.new
+	    @equipo = Equipo.new
 	    render 'equipos/new'
 	end
 
@@ -18,6 +18,6 @@ Macaya::App.controllers :equipos do
 		else
 		  flash.now[:error] = 'NO SE PUDO CREAR EL EQUIPO'
 		  render 'equipos/new'
-        end
+        	end
 	end
 end
