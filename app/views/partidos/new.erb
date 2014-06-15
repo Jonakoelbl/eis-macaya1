@@ -7,10 +7,10 @@
 			<%= p.text_field :fecha, :placeholder => 'yyyy-mm-dd' %> <br>
 
 			<%= p.label :equipo_local %> <br>
-			<%= p.select(:equipo_local, :collection => @equipos, :fields => [:name], :include_blank => 'Seleccionar un equipo local') %> <br>
+			<%= p.select(:equipo_local, :collection => @equipos, :fields => [:name], :include_blank => 'Seleccionar un equipo local',:id => 'equipo_local_select') %> <br>
 
 			<%= p.label :equipo_visitante %> <br>
-			<%= p.select(:equipo_visitante, :collection => @equipos, :fields => [:name], :include_blank => 'Seleccionar un equipo visitante') %> <br>
+			<%= p.select(:equipo_visitante, :collection => @equipos, :fields => [:name], :include_blank => 'Seleccionar un equipo visitante',:id => 'equipo_visitante_select') %> <br>
                
 			<%= p.submit "Crear", :class => 'btn btn-primary' %>
 			<%= link_to "Volver", url(:home, :index), :class => 'btn btn-secondary' %>
