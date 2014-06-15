@@ -9,12 +9,13 @@ Macaya::App.controllers :torneos do
 	    @torneo = Torneo.new
 	    render 'torneos/new'
 	end
-=begin
-	get :edit, :with => :id do
-	    @torneo = Torneo.get(:id)
-            render 'torneos/edit'
+
+	get :show, :with => :torneo_id do
+	    @torneo = Torneo.get(params[:torneo_id])
+	    asignar_torneo_actual @torneo
+	    @partidos = Partido.all(:torneo_id => torneo_actual.id)
+            render 'torneos/show'
 	end
-=end
 
 	post :create do
 		@torneo = Torneo.new(params[:torneo])

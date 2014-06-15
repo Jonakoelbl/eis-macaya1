@@ -1,16 +1,22 @@
 Macaya::App.controllers :partidos do
 
 	get :new do
-		@equipos = Equipo.all
-		@torneos = Torneo.all
+            @torneo = torneo_actual
+	    @equipos = Equipo.all
 	    @partido = Partido.new
 	    render 'partidos/new'
 	end
 
 	post :create do
-		unless Torneo.get(params[:partido][:torneo]).nil? 
-			unless Equipo.get(params[:partido][:equipo_local]).eql? Equipo.get(params[:partido][:equipo_visitante])
-				@partido = Partido.new(params[:partido])
+		@equipo_local = Equipo.first(:name => params[:partido][:equipo_local])
+                @equipo_visitante = Equipo.first(:name => params[:partido][:equipo_visitante])
+                @fecha = (params[:partido][:fecha])
+			unless @equipo_local.eql? @equipo_visitante
+				@partido = Partido.new
+	 			@partido.fecha = @fecha
+                                @partido.id_equipo_local = @equipo_local.id
+                                @partido.id_equipo_visitante = @equipo_visitante.id
+				torneo_actual.partidos << @partido
 				if @partido.save
 	  				flash[:success] = 'PARTIDO AGREGADO EXITOSAMENTE'
 	  				redirect '/'
@@ -22,9 +28,5 @@ Macaya::App.controllers :partidos do
         		flash[:error] = 'LOS EQUIPOS DEBEN SER DISTINTOS'
         		redirect '/partidos/new'	
         	end
-        else
-        	flash[:error] = 'DEBE SELECCIONAR UN TORNEO'
-        	redirect '/partidos/new'
-        end
 	end
 end

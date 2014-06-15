@@ -1,5 +1,5 @@
 <div class="preamble" id="zen-preamble" role="article">
-		<h3>Torneos Creados Recientemente</h3>
+		<h3> Torneos Creados Recientemente </h3>
 		<p>Aquí se encuentran los torneos recientemente creados: </p>
 		<table border="1" style="width:500px">
 			<tr>
@@ -8,7 +8,7 @@
 			<% @torneos.each do | torneo | %>
 			<tr>
   			<td align="center">
-				<%= torneo.name %>
+				<%= link_to torneo.name, url_for(:torneos, :show, :torneo_id => torneo.id), :class => 'link'%>
 			</td>
 			</tr>
  			<% end %>
@@ -19,7 +19,7 @@
 </div>
 
 <div class="preamble" id="zen-preamble" role="article">
-		<h3>Equipos Creados Recientemente</h3>
+		<h3> Equipos Creados Recientemente </h3>
 		<p>Aquí se encuentran los equipos recientemente creados: </p>
 		<table border="1" style="width:500px">
 			<tr>
@@ -37,36 +37,6 @@
 		<%= link_to "Ver mas", url(:equipos, :all), :class => 'link' %>
 </div>
 
-<div class="preamble" id="zen-preamble" role="article">
-		<h3>Partidos Creados Recientemente</h3>
-		<p>Aquí se encuentran los partidos recientemente creados: </p>
-		<table border="1" style="width:500px">
-			<tr>
-			  <th align="center">Torneo</th>
-			  <th align="center">Fecha</th> 
-			  <th align="center">Local</th>
-			  <th align="center">Visitante</th>
-			</tr>
-			<% @partidos.each do | partido | %>
-			<tr>
-			<td  align="center">
-				<%= partido.torneo %>
-			</td>
-			<td align="center">
-				<%= partido.fecha %>
-			</td>
-  			<td align="center">
-				<%= partido.equipo_local %>
-			</td>
-			<td align="center">
-				<%= partido.equipo_visitante %>
-			</td>
-			</tr>
- 			<% end %>
-
-		</table>
-</div>
-
 <aside class="columnaIzquierda" role="complementary">
 	<div class="wrapper">
 		<div class="design-selection" id="design-selection">
@@ -79,9 +49,6 @@
 					<li>
 						<a href="<%= url(:equipos, :new) %>" class="ver-mas"> <img src="img/agregarEquipoButton.jpg"</a>
 					</li>		
-					<li>
-						<a id="agregar-partido" href="<%= url(:partidos, :new) %>" class="ver-mas"> Agregar Partido</a>			
-					</li>	
 				</ul>
 			</nav>
 			
