@@ -1,0 +1,39 @@
+<div class="preamble" id="zen-preamble" role="article">		
+		<h3> Tabla de Posiciones de <%= torneo_actual.name %> </h3>
+		<table border="1" style="width:500px">
+			<tr>
+			  <th align="center">Posicion</th> 
+			  <th align="center">Equipo</th>
+			  <th align="center">Puntaje</th>
+			</tr>
+			<% @equipos.each do | equipo | %>
+			<tr>
+				<td align="center">
+	
+				</td>
+				<td align="center">
+					<%= equipo.name %>
+				</td>
+				<td align="center">
+					<%= equipo.puntaje %>
+				</td>
+			</tr>
+ 			<% end %>
+		</table>
+	<%= link_to "Volver", url(:home, :index), :class => 'btn btn-secondary' %>
+</div>
+
+<aside class="columnaIzquierda" role="complementary">
+	<div class="wrapper">
+		<div class="design-selection" id="design-selection">
+			<h3 class="select">ACCIONES</h3>
+			<nav role="navigation">
+				<ul>
+					
+				</ul>
+			</nav>
+				
+		</div>
+
+	</div>
+</aside>

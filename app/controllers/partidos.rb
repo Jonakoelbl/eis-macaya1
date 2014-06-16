@@ -29,4 +29,29 @@ Macaya::App.controllers :partidos do
         		redirect '/partidos/new'	
         	end
 	end
+
+	post :update, :with => :partido_id do
+		@partido = Partido.first(:id => params[:partido_id])
+
+                @equipo_local = Equipo.first(:id => @partido.id_equipo_local)
+		@equipo_visitante = Equipo.first(:id => @partido.id_equipo_visitante)
+                @puntaje_actual_local = @equipo_local.puntaje
+                @puntaje_actual_visitante = @equipo_visitante.puntaje
+
+		@resultado_local = params[:partido][:resultado_equipo_local]
+                @resultado_visitante = params[:partido][:resultado_equipo_visitante]
+
+                @partido.update(:resultado_local => @resultado_local, 
+                                :resultado_visitante => @resultado_visitante)
+
+		if @resultado_local > @resultado_visitante
+                	@equipo_local.update(:puntaje => (@puntaje_actual_local + 3))
+                elsif @resultado_local < @resultado_visitante
+                        @equipo_visitante.update(:puntaje => (@puntaje_actual_visitante + 3))
+                else
+                        @equipo_local.update(:puntaje => (@puntaje_actual_local + 1))
+                        @equipo_visitante.update(:puntaje => (@puntaje_actual_visitante + 1))
+		end
+		redirect '/'	
+	end
 end
