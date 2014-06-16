@@ -10,6 +10,11 @@ Macaya::App.controllers :torneos do
 	    render 'torneos/new'
 	end
 
+	get :table do
+            @equipos = Equipo.all(:order => [:puntaje.desc])
+	    render 'torneos/table'
+	end
+
 	get :show, :with => :torneo_id do
 	    @torneo = Torneo.get(params[:torneo_id])
 	    asignar_torneo_actual @torneo
