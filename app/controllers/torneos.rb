@@ -11,6 +11,7 @@ Macaya::App.controllers :torneos do
 	end
 
 	get :table do
+		@posicion = 0
             @equipos = Equipo.all(:order => [:puntaje.desc])
 	    render 'torneos/table'
 	end
