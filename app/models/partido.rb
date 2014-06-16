@@ -6,7 +6,9 @@ class Partido
   belongs_to :torneo #:model => 'Torneo'
   property :fecha, Date
   property :id_equipo_local, Integer
-  property :id_equipo_visitante , Integer
+  property :resultado_local, Integer
+  property :id_equipo_visitante, Integer
+  property :resultado_visitante, Integer
   
 #  belongs_to :equipo_local, 'Equipo', :key => true
 #  belongs_to :equipo_visitante, 'Equipo', :key => true
