@@ -1,13 +1,13 @@
 <div class="preamble" id="zen-preamble" role="article">		
-		<h3> Partidos para <%= torneo_actual.name %> </h3>
+		<h3 style="color:white"> Partidos para <%= torneo_actual.name %> </h3>
 		<table border="1" style="width:500px">
 			<tr>
 			  <th align="center">Fecha</th> 
 			  <th align="center">Local</th>
 			  <th align="center">Resultado Local</th>
 			  <th align="center">Visitante</th>
-                          <th align="center">Resultado Visitante</th>
-                          <th align="center">Acciones</th>
+              <th align="center">Resultado Visitante</th>
+              <th align="center">Acciones</th>
 			</tr>
 			<% @partidos.each do | partido | %>
 			<tr>
@@ -32,8 +32,9 @@
 			</td>
 			</tr>
  			<% end %>
-                        <%= link_to "Volver", url(:home, :index), :class => 'btn btn-secondary' %>
 		</table>
+		<br>
+		<%= link_to "Volver", url(:home, :index), :class => 'btn btn-secondary' %>
 </div>
 
 <aside class="columnaIzquierda" role="complementary">
