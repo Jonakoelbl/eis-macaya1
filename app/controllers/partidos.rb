@@ -20,7 +20,7 @@ Macaya::App.controllers :partidos do
 				torneo_actual.partidos << @partido
 				if @partido.save
 	  				flash[:success] = 'PARTIDO AGREGADO EXITOSAMENTE'
-	  				redirect '/'
+	  				redirect url(:torneos, :show, :torneo_id => torneo_actual.id)
 				else
 	  				flash.now[:error] = 'EL PARTIDO NO PUDO SER AGREGADO'
 	  				render 'partidos/new'
