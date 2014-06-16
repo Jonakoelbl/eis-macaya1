@@ -44,10 +44,10 @@
 			<nav role="navigation">
 				<ul>
 					<li>
-						<a href="<%= url(:torneos, :new) %>" class="ver-mas"> <img src="img/agregarTorneoButton.jpg"</a>
+						<%= link_to "Agregar Torneo", url_for(:torneos, :new), :class => 'link'%>
 					</li>	
 					<li>
-						<a href="<%= url(:equipos, :new) %>" class="ver-mas"> <img src="img/agregarEquipoButton.jpg"</a>
+						<%= link_to "Agregar Equipo", url_for(:equipos, :new), :class => 'link'%>
 					</li>		
 				</ul>
 			</nav>
