@@ -17,19 +17,16 @@ Given(/^que no existan partidos$/) do
 end
 
 When(/^creo un partido para el "(.*?)" con fecha "(.*?)"$/) do |nombre_torneo, fecha|
-  click_link (nombre_torneo)
+  click_button (nombre_torneo)
   click_link ('Agregar Partido') #ID del Button
-  # fill_in('partido[torneo]', :with => nombre_torneo)
   fill_in('partido[fecha]', :with => fecha)
 end
 
 When(/^defino equipo local "(.*?)"$/) do |equipoLocal|
-  # fill_in('partido[equipo_local]', :with => equipoLocal)  
   select(equipoLocal, :from => 'equipo_local_select')
 end
 
 When(/^defino equipo visitante "(.*?)"$/) do |equipoVisitante|
-  # fill_in('partido[equipo_visitante]', :with => equipoVisitante)  
   select(equipoVisitante, :from => 'equipo_visitante_select')
 end
 
