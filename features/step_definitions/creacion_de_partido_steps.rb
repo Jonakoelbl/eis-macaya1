@@ -17,6 +17,7 @@ Given(/^que no existan partidos$/) do
 end
 
 When(/^creo un partido para el "(.*?)" con fecha "(.*?)"$/) do |nombre_torneo, fecha|
+  visit '/'
   click_link (nombre_torneo)
   click_link ('Agregar Partido') #ID del Button
   # fill_in('partido[torneo]', :with => nombre_torneo)

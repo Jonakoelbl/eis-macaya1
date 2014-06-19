@@ -1,4 +1,5 @@
 Then(/^se visualizan los partidos en el fixture$/) do
+	visit '/'
   click_link ('torneoA')
   page.should have_content('2014-07-20')
   page.should have_content('equipo1')

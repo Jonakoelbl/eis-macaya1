@@ -1,5 +1,5 @@
 <div class="preamble" id="zen-preamble" role="article">		
-		<h3> Tabla de Posiciones de <%= torneo_actual.name %> </h3>
+		<h3 style="color:white"> Tabla de Posiciones de <%= torneo_actual.name %> </h3>
 		<table border="1" style="width:500px">
 			<tr>
 			  <th align="center">Posicion</th> 
@@ -9,7 +9,7 @@
 			<% @equipos.each do | equipo | %>
 			<tr>
 				<td align="center">
-	
+					<%= @posicion += 1 %>
 				</td>
 				<td align="center">
 					<%= equipo.name %>
