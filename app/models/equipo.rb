@@ -4,7 +4,6 @@ class Equipo
   # property <name>, <type>
   property :id, Serial
   property :name, String, :unique => true
-  property :puntaje, Integer, :required => true
 
   validates_presence_of :name
 

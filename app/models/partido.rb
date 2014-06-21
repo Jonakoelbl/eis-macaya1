@@ -3,7 +3,7 @@ class Partido
 
   # property <name>, <type>
   property :id, Serial
-  belongs_to :torneo #:model => 'Torneo'
+  belongs_to :torneo
   property :fecha, Date
   property :id_equipo_local, Integer
   property :resultado_local, Integer

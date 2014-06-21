@@ -12,7 +12,6 @@ Macaya::App.controllers :equipos do
 
 	post :create do
 		@equipo = Equipo.new(params[:equipo])
-                @equipo.puntaje = 0
 		if @equipo.save
 		  flash[:success] = 'EL EQUIPO FUE CREADO'
 		  redirect '/'

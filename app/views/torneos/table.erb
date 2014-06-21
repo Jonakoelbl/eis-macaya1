@@ -6,16 +6,17 @@
 			  <th align="center">Equipo</th>
 			  <th align="center">Puntaje</th>
 			</tr>
-			<% @equipos.each do | equipo | %>
+			<% @puntajes.each do | puntaje | %>
 			<tr>
 				<td align="center">
 					<%= @posicion += 1 %>
 				</td>
 				<td align="center">
-					<%= equipo.name %>
+                                        <!-- Me quedo con el equipo e imprimo su nombre -->
+					<%= (@equipos.first(:id => puntaje.equipo_id)).name %>
 				</td>
 				<td align="center">
-					<%= equipo.puntaje %>
+					<%= puntaje.puntaje %>
 				</td>
 			</tr>
  			<% end %>
