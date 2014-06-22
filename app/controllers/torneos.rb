@@ -27,7 +27,7 @@ Macaya::App.controllers :torneos do
 	end
 
 	post :create do
-        @equipos = Equipo.all        
+        @equipos = Equipo.all
 		@torneo = Torneo.new
         @torneo.name = (params[:torneo][:name])
         if params[:crear]
@@ -53,8 +53,12 @@ Macaya::App.controllers :torneos do
 		    end
         else
             @equipo = Equipo.first(:name => params[:torneo][:equipos])
-			equipos_a_agregar << @equipo.name
-            flash.now[:success] = 'SE AGREGO AL EQUIPO "' + @equipo.name + '"'
+            if equipos_a_agregar.include? @equipo.name
+				flash.now[:error] = 'EL EQUIPO YA ESTA AGREGADO'
+			else
+				equipos_a_agregar << @equipo.name
+            	flash.now[:success] = 'SE AGREGO AL EQUIPO "' + @equipo.name + '"'
+			end
 			render 'torneos/new'            
         end           
 	end
