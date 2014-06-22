@@ -47,25 +47,37 @@ Macaya::App.controllers :partidos do
         @puntaje_actual_local = Puntaje.first(:equipo_id => @equipo_local.id, :torneo_id => torneo_actual.id)
         @puntaje_actual_visitante = Puntaje.first(:equipo_id => @equipo_visitante.id, :torneo_id => torneo_actual.id)
 
-		@resultado_local = params[:partido][:resultado_equipo_local]
-        @resultado_visitante = params[:partido][:resultado_equipo_visitante]
+		@resultado_local_s = params[:partido][:resultado_equipo_local]
+        @resultado_visitante_s = params[:partido][:resultado_equipo_visitante]
 
-        if @resultado_visitante.to_i >= 0 and @resultado_local.to_i >= 0
-            @partido.update(:resultado_local => @resultado_local, :resultado_visitante => @resultado_visitante)
-			if @resultado_local > @resultado_visitante
-               	@puntaje_actual_local.update(:puntaje => (@puntaje_actual_local.puntaje + 3))
-            elsif @resultado_local < @resultado_visitante
-                @puntaje_actual_visitante.update(:puntaje => (@puntaje_actual_visitante.puntaje + 3))
-       	    else
-                @puntaje_actual_local.update(:puntaje => (@puntaje_actual_local.puntaje + 1))
-                @puntaje_actual_visitante.update(:puntaje => (@puntaje_actual_visitante.puntaje + 1))
-			end
+		puts @resultado_local_s
+
+		if !@resultado_local_s.empty? and !@resultado_visitante_s.empty?
+			begin
+				@resultado_local = Integer @resultado_local_s
+				@resultado_visitante = Integer @resultado_visitante_s
+				if @resultado_visitante >= 0 and @resultado_local >= 0
+				    @partido.update(:resultado_local => @resultado_local, :resultado_visitante => @resultado_visitante)
+					if @resultado_local > @resultado_visitante
+				       	@puntaje_actual_local.update(:puntaje => (@puntaje_actual_local.puntaje + 3))
+				    elsif @resultado_local < @resultado_visitante
+				        @puntaje_actual_visitante.update(:puntaje => (@puntaje_actual_visitante.puntaje + 3))
+			   	    else
+				        @puntaje_actual_local.update(:puntaje => (@puntaje_actual_local.puntaje + 1))
+				        @puntaje_actual_visitante.update(:puntaje => (@puntaje_actual_visitante.puntaje + 1))
+					end
+					redirect url(:torneos, :show, :torneo_id => @partido.torneo.id)
+				else
+					flash[:error] = 'LOS VALORES DEBEN SER POSITIVOS'
+					redirect url(:torneos, :show, :torneo_id => @partido.torneo.id)
+				end
+			rescue
+				flash[:error] = 'DEBE INGRESAR VALORES NUMERICOS'
+				redirect url(:torneos, :show, :torneo_id => @partido.torneo.id)
+			end		
 		else
-			flash[:error] = 'LOS VALORES DEBEN SER POSITIVO'
-        	redirect url(:torneos, :show, :torneo_id => @partido.torneo.id)
+			flash[:error] = 'DEBE COMPLETAR TODOS LOS CAMPOS'
+			redirect url(:torneos, :show, :torneo_id => @partido.torneo.id)
 		end
-
-		# flash[:error] = 'DEBE INGRESAR VALORES NUMERICOS'
-		redirect url(:torneos, :show, :torneo_id => @partido.torneo.id)
 	end
 end
