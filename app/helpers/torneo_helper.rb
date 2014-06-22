@@ -20,5 +20,22 @@ Macaya::App.helpers do
 	def torneo_asignado?
 		!torneo_actual.nil?
 	end
+
+    def equipos_a_agregar=(equipos)
+		@equipos_a_agregar = equipos
+	end
+
+	def equipos_a_agregar
+        @equipos_a_agregar ||= session[:equipos_a_agregar]
+	end
+
+	def asignar_equipos_a_agregar(equipos)
+		session[:equipos_a_agregar] = equipos
+		self.equipos_a_agregar = equipos
+	end
+
+	def borrar_equipos_a_agregar
+		session[:equipos_a_agregar] = []
+	end
 	
 end
