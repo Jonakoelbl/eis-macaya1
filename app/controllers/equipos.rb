@@ -11,13 +11,20 @@ Macaya::App.controllers :equipos do
 	end
 
 	post :create do
-		@equipo = Equipo.new(params[:equipo])
-		if @equipo.save
-		  flash[:success] = 'EL EQUIPO FUE CREADO'
-		  redirect '/'
+        @equipo = Equipo.new
+		@nombre_equipo = params[:equipo][:name]
+		if !@nombre_equipo.empty?
+			@equipo.name = @nombre_equipo
+			if @equipo.save
+			  flash[:success] = 'EL EQUIPO FUE CREADO'
+			  redirect '/'
+			else
+			  flash.now[:error] = 'EL EQUIPO YA EXISTE'
+			  render 'equipos/new'
+		    end
 		else
-		  flash.now[:error] = 'NO SE PUDO CREAR EL EQUIPO'
-		  render 'equipos/new'
-        	end
+			flash.now[:error] = 'EL EQUIPO DEBE TENER UN NOMBRE'
+			render 'equipos/new'
+		end
 	end
 end

@@ -13,29 +13,40 @@ Macaya::App.controllers :partidos do
 	end
 
 	post :create do
+		@torneo = torneo_actual
+		@partido = Partido.new
 		@equipos = Equipo.all
 		@equipo_local = Equipo.first(:name => params[:partido][:equipo_local])
         @equipo_visitante = Equipo.first(:name => params[:partido][:equipo_visitante])
         @fecha = (params[:partido][:fecha])
 
-			unless @equipo_local.eql? @equipo_visitante
-				@partido = Partido.new
-                                
-	 			@partido.fecha = @fecha
-                @partido.id_equipo_local = @equipo_local.id
-                @partido.id_equipo_visitante = @equipo_visitante.id
-				torneo_actual.partidos << @partido
-				if @partido.save
-	  				flash[:success] = 'PARTIDO AGREGADO EXITOSAMENTE'
-	  				redirect url(:torneos, :show, :torneo_id => torneo_actual.id)
-				else
-	  				flash.now[:error] = 'EL PARTIDO NO PUDO SER AGREGADO'
-	  				render 'partidos/new'
-       			end
-       		else
-        		flash[:error] = 'LOS EQUIPOS DEBEN SER DISTINTOS'
-        		redirect '/partidos/new'	
-        	end
+		if !@equipo_local.nil? and !@equipo_visitante.nil?
+			if !@fecha.empty?
+				unless @equipo_local.eql? @equipo_visitante
+					@partido = Partido.new                
+		 			@partido.fecha = @fecha
+		            @partido.id_equipo_local = @equipo_local.id
+		            @partido.id_equipo_visitante = @equipo_visitante.id
+					torneo_actual.partidos << @partido
+					if @partido.save
+		  				flash[:success] = 'PARTIDO AGREGADO EXITOSAMENTE'
+		  				redirect url(:torneos, :show, :torneo_id => torneo_actual.id)
+					else
+		  				flash.now[:error] = 'EL PARTIDO YA EXISTE'
+		  				render 'partidos/new'
+		   			end
+		   		else
+		    		flash.now[:error] = 'LOS EQUIPOS DEBEN SER DISTINTOS'
+		    		render 'partidos/new'	
+		    	end
+			else
+				flash.now[:error] = 'DEBE INGRESAR UNA FECHA'
+		    	render 'partidos/new'	
+			end 
+		else
+			flash.now[:error] = 'DEBE SELECCIONAR DOS EQUIPOS'
+		    render 'partidos/new'	
+		end
 	end
 
 	post :update, :with => :partido_id do
