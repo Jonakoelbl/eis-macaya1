@@ -43,5 +43,5 @@ Then(/^se visualiza el partido en el fixture$/) do
 end
 
 Then(/^muestra un error que el partido ya existe$/) do
-  expect(page).to have_content 'EL PARTIDO NO PUDO SER AGREGADO'
+  expect(page).to have_content 'EL PARTIDO YA EXISTE'
 end

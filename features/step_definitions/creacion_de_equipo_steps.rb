@@ -25,5 +25,5 @@ Then(/^se crea exitosamente el equipo "(.*?)"$/) do |nombre_equipo|
 end
 
 Then(/^me indica error porque ya existe un equipo$/) do 
-  expect(page).to have_content 'NO SE PUDO CREAR EL EQUIPO'
+  expect(page).to have_content 'EL EQUIPO YA EXISTE'
 end
