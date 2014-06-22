@@ -6,14 +6,16 @@ Macaya::App.controllers :torneos do
 	end
 
 	get :new do
+        asignar_equipos_a_agregar []
 	    @torneo = Torneo.new
+        @equipos = Equipo.all
 	    render 'torneos/new'
 	end
 
 	get :table do
 		@posicion = 0
-            @equipos = Equipo.all
-            @puntajes = Puntaje.all(:torneo_id => torneo_actual.id, :order => [:puntaje.desc])
+        @equipos = Equipo.all
+        @puntajes = Puntaje.all(:torneo_id => torneo_actual.id, :order => [:puntaje.desc])
 	    render 'torneos/table'
 	end
 
@@ -25,14 +27,36 @@ Macaya::App.controllers :torneos do
 	end
 
 	post :create do
-		@torneo = Torneo.new(params[:torneo])
-		if @torneo.save
-		  flash[:success] = 'EL TORNEO FUE CREADO'
-		  redirect '/'
-		else
-		  flash.now[:error] = 'NO SE PUDO CREAR EL TORNEO'
-		  render 'torneos/new'
-        	end
+        @equipos = Equipo.all        
+		@torneo = Torneo.new
+        @torneo.name = (params[:torneo][:name])
+        if params[:crear]
+            #equipos_a_agregar.each do | equipo_name |
+            #    @equipo = Equipo.first(:name => equipo_name)
+			#	 @torneo.equipos << @equipo
+			#end
+			if @torneo.save
+			  equipos_a_agregar.each do | equipo_name |
+				@equipo = Equipo.first(:name => equipo_name)
+			  	@puntaje = Puntaje.new
+            	@puntaje.torneo = @torneo
+           	 	@puntaje.equipo = @equipo
+            	@puntaje.puntaje = 0
+           	 	@puntaje.save
+			  end
+              borrar_equipos_a_agregar
+			  flash[:success] = 'EL TORNEO FUE CREADO'
+			  redirect '/'
+			else
+			  flash.now[:error] = 'NO SE PUDO CREAR EL TORNEO'
+			  render 'torneos/new'
+		    end
+        else
+            @equipo = Equipo.first(:name => params[:torneo][:equipos])
+			equipos_a_agregar << @equipo.name
+            flash.now[:success] = 'SE AGREGO AL EQUIPO "' + @equipo.name + '"'
+			render 'torneos/new'            
+        end           
 	end
 
 end

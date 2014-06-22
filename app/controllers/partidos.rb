@@ -2,6 +2,11 @@ Macaya::App.controllers :partidos do
 
 	get :new do
         @torneo = torneo_actual
+        #@equipos = []
+        #@puntajes = Puntaje.all(:torneo_id => torneo_actual.id)
+        #@puntajes.each do | puntaje |
+		#	@equipo = Equipo.first(:id => puntaje.id)
+		#end
 	    @equipos = Equipo.all
 	    @partido = Partido.new
 	    render 'partidos/new'
@@ -13,35 +18,12 @@ Macaya::App.controllers :partidos do
         @equipo_visitante = Equipo.first(:name => params[:partido][:equipo_visitante])
         @fecha = (params[:partido][:fecha])
 
-		@existe_puntaje_local = Puntaje.first(:torneo_id => torneo_actual.id, :equipo_id => @equipo_local.id).nil?
-        @existe_puntaje_visitante = Puntaje.first(:torneo_id => torneo_actual.id, :equipo_id => @equipo_visitante.id).nil?
-
-		if not @existe_puntaje_local
-			@puntaje_local = Puntaje.first(:torneo_id => torneo_actual.id, :equipo_id => @equipo_local.id)
-        else
-            @puntaje_local = Puntaje.new
-            @puntaje_local.torneo = torneo_actual
-            @puntaje_local.equipo = @equipo_local
-            @puntaje_local.puntaje = 0
-            @puntaje_local.save
-		end
-
-        if not @existe_puntaje_visitante
-			@puntaje_visitante = Puntaje.first(:torneo_id => torneo_actual.id, :equipo_id => @equipo_visitante.id)
-        else
-            @puntaje_visitante = Puntaje.new
-            @puntaje_visitante.torneo = torneo_actual
-            @puntaje_visitante.equipo = @equipo_visitante
-            @puntaje_visitante.puntaje = 0
-            @puntaje_visitante.save
-        end
-
 			unless @equipo_local.eql? @equipo_visitante
 				@partido = Partido.new
                                 
 	 			@partido.fecha = @fecha
-                                @partido.id_equipo_local = @equipo_local.id
-                                @partido.id_equipo_visitante = @equipo_visitante.id
+                @partido.id_equipo_local = @equipo_local.id
+                @partido.id_equipo_visitante = @equipo_visitante.id
 				torneo_actual.partidos << @partido
 				if @partido.save
 	  				flash[:success] = 'PARTIDO AGREGADO EXITOSAMENTE'

@@ -9,4 +9,7 @@ class Torneo
 
   has n, :partidos
 
+  has n, :puntajes
+  has n, :equipos, :through => :puntajes
+
 end
