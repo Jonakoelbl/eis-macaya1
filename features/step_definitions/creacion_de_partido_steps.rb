@@ -1,14 +1,17 @@
-Given(/^que tengo ya creado el torneo "(.*?)"$/) do |nombre_torneo|
-  Torneo.all.destroy
-  Equipo.all.destroy
-  visit '/torneos/new'
-  fill_in('torneo[name]', :with => nombre_torneo)
+Given(/^que tengo ya creado el equipo "(.*?)"$/) do |nombre_equipo|
+  visit '/equipos/new'
+  fill_in('equipo[name]', :with => nombre_equipo)
   click_button('Crear')
 end
 
-Given(/^el equipo "(.*?)"$/) do |nombre_equipo|
-  visit '/equipos/new'
-  fill_in('equipo[name]', :with => nombre_equipo)
+Given(/^^un torneo "(.*?)" con los equipos "(.*?)" y "(.*?)"$/) do |nombre_torneo, nombre_equipo1, nombre_equipo2|
+  Torneo.all.destroy
+  visit '/torneos/new'
+  fill_in('torneo[name]', :with => nombre_torneo)
+  select(nombre_equipo1, :from => 'equipo_select')
+  click_button('Agregar Equipo')
+  select(nombre_equipo2, :from => 'equipo_select')
+  click_button('Agregar Equipo')
   click_button('Crear')
 end
 
@@ -40,5 +43,5 @@ Then(/^se visualiza el partido en el fixture$/) do
 end
 
 Then(/^muestra un error que el partido ya existe$/) do
-  expect(page).to have_content 'EL PARTIDO NO PUDO SER AGREGADO'
+  expect(page).to have_content 'EL PARTIDO YA EXISTE'
 end

@@ -6,22 +6,23 @@
 			  <th align="center">Equipo</th>
 			  <th align="center">Puntaje</th>
 			</tr>
-			<% @equipos.each do | equipo | %>
+			<% @puntajes.each do | puntaje | %>
 			<tr>
 				<td align="center">
 					<%= @posicion += 1 %>
 				</td>
 				<td align="center">
-					<%= equipo.name %>
+                                        <!-- Me quedo con el equipo e imprimo su nombre -->
+					<%= (@equipos.first(:id => puntaje.equipo_id)).name %>
 				</td>
 				<td align="center">
-					<%= equipo.puntaje %>
+					<%= puntaje.puntaje %>
 				</td>
 			</tr>
  			<% end %>
 		</table>
 		<br>
-	<%= link_to "Volver", url(:home, :index), :class => 'btn btn-secondary' %>
+	<%= link_to "Volver", url(:torneos, :show, :torneo_id => torneo_actual.id), :class => 'btn btn-secondary' %>
 </div>
 
 <aside class="columnaIzquierda" role="complementary">
