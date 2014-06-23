@@ -1,9 +1,9 @@
 Feature: Creación de Partidos
   
   Background:
-    Given que tengo ya creado el torneo "torneoA"
-    And el equipo "equipo1"
-    And el equipo "equipo2"
+    Given que tengo ya creado el equipo "equipo1"
+    And que tengo ya creado el equipo "equipo2"
+    And un torneo "torneoA" con los equipos "equipo1" y "equipo2"
 
 
   Scenario: Creacion Exitosa

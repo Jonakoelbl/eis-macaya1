@@ -1,13 +1,14 @@
 Given(/^no existen equipos$/) do
+  Puntaje.all.destroy #Se realiza esto para romper/eliminar la relacion con Torneos.
   Equipo.all.destroy
   visit '/'
 end
 
 When(/^voy a crear un equipo$/) do
-	visit 'equipos/new'
+	click_link('Agregar Equipo')
 end
 
-And(/^creo un equipo llamado "(.*?)"$/) do |nombre_equipo|
+When(/^creo un equipo llamado "(.*?)"$/) do |nombre_equipo|
 	fill_in('equipo[name]', :with => nombre_equipo)
 	click_button('Crear')
 	page.should have_content(nombre_equipo)
